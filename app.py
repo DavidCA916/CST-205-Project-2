@@ -9,8 +9,8 @@ app.secret_key = 'c\xa7\xe8\xc6\xc7.\x0cr\x00\xb4\xf2"\x89FL\xcf\x01\xbe2|P&#\x8
 
 # configure Instagram API
 instaConfig = {
-	'client_id':'a3010e12a8fa4f428541358d83a0716a',
-	'client_secret':'c245cc783d4743caa9032a3c23afac6b',
+	'client_id' : 'a3010e12a8fa4f428541358d83a0716a',
+	'client_secret' : 'c245cc783d4743caa9032a3c23afac6b',
 	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
