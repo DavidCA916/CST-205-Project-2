@@ -67,35 +67,36 @@ def instagram_callback():
 		return "Uhoh no code provided"
 
 @app.route('/popular')
-def media_popular(): 
-    if 'instagram_access_token' in session and 'instagram_user' in session:
+def media_popular():
+
+	if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
 		media_search = api.media_popular
-    	
-    	for media in popular_media:
-    		popular_media.get('id')
 
-    	templateData = {
+		for media in media_popular:
+			popular_media.get('id')
+
+		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : recent_media
 		}
 
 		return render_template('display.html', **templateData)
-
-    else:
-    	return redirect('/connect')
+		
+	else:
+		return redirect('/connect')
 	
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template('404.html'), 404
+	return render_template('404.html'), 404
 
 
 # This is a jinja custom filter
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date, fmt=None):
-    pyDate = time.strptime(date,'%a %b %d %H:%M:%S +0000 %Y') # convert instagram date string into python date/time
-    return time.strftime('%Y-%m-%d %h:%M:%S', pyDate) # return the formatted date.
-    
+	pyDate = time.strptime(date,'%a %b %d %H:%M:%S +0000 %Y') # convert instagram date string into python date/time
+	return time.strftime('%Y-%m-%d %h:%M:%S', pyDate) # return the formatted date.
+	
 # --------- Server On ----------
 # start the webserver
 if __name__ == "__main__":
