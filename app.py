@@ -11,7 +11,7 @@ app.secret_key = os.environ.get('SECRET_KEY')
 instaConfig = {
 	'client_id':'a3010e12a8fa4f428541358d83a0716a',
 	'client_secret':'c245cc783d4743caa9032a3c23afac6b',
-	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com//instagram_callback'
+	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
 
