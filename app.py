@@ -67,14 +67,12 @@ def instagram_callback():
 		return "Uhoh no code provided"
 
 @app.route('/popular')
-def media_popular():
+def popular_photos():
 
+	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		media_search = api.media_popular()
-
-		for media in media_search:
-			media_search.get('id')
+		api.media_popular, next = userAPI.media_popular(user_id=session['instagram_user'].get('id'),count=25)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
