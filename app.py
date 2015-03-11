@@ -67,10 +67,10 @@ def instagram_callback():
 		return "Uhoh no code provided"
 
 @app.route('/popular')
-def popular(): 
+def media_popular(): 
     if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-    	media_search = api.media_popular(count=25)
+    	media_search = api.media_popular
     	for media in popular_media:
     		popular_media.get('id')
 
