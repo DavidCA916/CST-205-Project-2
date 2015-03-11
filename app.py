@@ -70,7 +70,8 @@ def instagram_callback():
 def media_popular(): 
     if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-    	media_search = api.media_popular
+		media_search = api.media_popular
+    	
     	for media in popular_media:
     		popular_media.get('id')
 
