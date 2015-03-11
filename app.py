@@ -66,7 +66,21 @@ def instagram_callback():
 	else:
 		return "Uhoh no code provided"
 
+@app.route('/popular')
+def popular():
+	if 'instagram_access_token' in session and 'instagram_user' in session:
+		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
+		media_popular, next = userAPI.user.media_popular(user_id=session['instagram_user'].get('id'),count=25)
 
+		emplateData = {
+			'size' : request.args.get('size','thumb'),
+			'media' : recent_media
+		}
+
+		return render_template('display.html', **templateData)
+
+	else:
+		return redirect('/connect')
 	
 @app.errorhandler(404)
 def page_not_found(error):
