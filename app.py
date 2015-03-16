@@ -56,12 +56,12 @@ def popular_photos():
 
 
 @app.route('/feed')
-def feed():
+def feed_photos():
 
-	# if instagram info is in session variables, then display user's feed photos
+	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_feed = api.user_media_feed(count=25)
+		media_search = api.user_media_feed(count=25)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
@@ -69,9 +69,8 @@ def feed():
 		}
 
 		return render_template('display.html', **templateData)
-
-	else:
 		
+	else:
 		return redirect('/connect')
 
 
