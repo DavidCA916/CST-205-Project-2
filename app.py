@@ -14,6 +14,7 @@ instaConfig = {
 	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
+num_photos = 12
 
 @app.route('/')
 def home():
@@ -31,7 +32,7 @@ def user_photos():
 	# if instagram info is in session variables, then display user photos
 	if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		recent_media, next = userAPI.user_recent_media(user_id=session['instagram_user'].get('id'),count=25)
+		recent_media, next = userAPI.user_recent_media(user_id=session['instagram_user'].get('id'),count=num_photos)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
@@ -53,7 +54,7 @@ def popular_photos():
 	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		media_search = api.media_popular(count=25)
+		media_search = api.media_popular(count=12)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
@@ -73,7 +74,7 @@ def feed_photos():
 	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_feed, next = userAPI.user_media_feed(count=25)
+		user_feed, next = userAPI.user_media_feed(count=12)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
