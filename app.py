@@ -58,7 +58,7 @@ def popular_photos():
 @app.route('/feed')
 def feed_photos():
 
-	title="Popular Photos"
+	title = "Popular Photos -"
 
 	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session:
