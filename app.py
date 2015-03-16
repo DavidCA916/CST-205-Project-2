@@ -61,7 +61,7 @@ def feed_photos():
 	# if instagram info is in session variables, then display popular photos
 	if 'instagram_access_token' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_feed = api.user_media_feed(count=25)
+		user_feed = next = userAPI.user_media_feed(count=25)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
