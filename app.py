@@ -25,7 +25,7 @@ def user_photos():
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : recent_media
+			'media' : recent_media,
 			 'title' : "Home -"
 		}
 
@@ -67,7 +67,7 @@ def feed_photos():
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : user_feed
+			'media' : user_feed,
 			'title' :  "User\'s Feed -"
 		}
 
