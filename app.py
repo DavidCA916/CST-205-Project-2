@@ -46,10 +46,11 @@ def popular_photos():
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : media_search
+			'media' : media_search,
+			'title' : "Popular Photos -"
 		}
 
-		return render_template('display.html', **templateData, title="Popular Photos -")
+		return render_template('display.html', **templateData)
 		
 	else:
 		return redirect('/connect')
