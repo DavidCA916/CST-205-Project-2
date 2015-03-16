@@ -3,14 +3,17 @@ import time
 from instagram.client import InstagramAPI
 from flask import Flask, request, render_template, session, redirect, abort, flash, jsonify
 
+
+s3 = S3Client(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
 app = Flask(__name__)   # create our flask app
-app.secret_key = 'FLASK_SECRET'
+app.secret_key = os.environ['FLASK_SECRET']
 
 
 # configure Instagram API
 instaConfig = {
-	'client_id' : 'ID',
-	'client_secret' : 'SECRET',
+	'client_id' : os.environ['ID'],
+	'client_secret' : os.environ['SECRET'],
 	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
