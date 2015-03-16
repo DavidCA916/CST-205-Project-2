@@ -26,7 +26,7 @@ def user_photos():
 		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : recent_media,
-			 'title' : "Home -"
+			 'title' : ""
 		}
 
 		return render_template('display.html', **templateData)
