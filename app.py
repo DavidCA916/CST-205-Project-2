@@ -28,7 +28,7 @@ def user_photos():
 			'media' : recent_media
 		}
 
-		return render_template('display.html', **templateData, title='Home')
+		return render_template('display.html', **templateData, title="Home -")
 		
 
 	else:
@@ -49,7 +49,7 @@ def popular_photos():
 			'media' : media_search
 		}
 
-		return render_template('display.html', **templateData, title='Popular Photos')
+		return render_template('display.html', **templateData, title="Popular Photos -")
 		
 	else:
 		return redirect('/connect')
@@ -68,7 +68,7 @@ def feed_photos():
 			'media' : user_feed
 		}
 
-		return render_template('display.html', **templateData, title='User\'s Feed')
+		return render_template('display.html', **templateData, title="User\'s Feed -")
 		
 	else:
 		return redirect('/connect')
