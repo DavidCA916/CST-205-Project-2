@@ -26,9 +26,10 @@ def user_photos():
 		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : recent_media
+			 'title' : "Home -"
 		}
 
-		return render_template('display.html', **templateData, title="Home -")
+		return render_template('display.html', **templateData)
 		
 
 	else:
@@ -67,9 +68,10 @@ def feed_photos():
 		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : user_feed
+			'title' :  "User\'s Feed -"
 		}
 
-		return render_template('display.html', **templateData, title="User\'s Feed -")
+		return render_template('display.html', **templateData)
 		
 	else:
 		return redirect('/connect')
