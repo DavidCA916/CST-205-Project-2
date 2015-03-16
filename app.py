@@ -3,9 +3,6 @@ import time
 from instagram.client import InstagramAPI
 from flask import Flask, request, render_template, session, redirect, abort, flash, jsonify
 
-
-s3 = S3Client(os.environ['S3_KEY'], os.environ['S3_SECRET'])
-
 app = Flask(__name__)   # create our flask app
 app.secret_key = os.environ['FLASK_SECRET']
 
