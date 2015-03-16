@@ -4,7 +4,7 @@ from instagram.client import InstagramAPI
 from flask import Flask, request, render_template, session, redirect, abort, flash, jsonify
 
 app = Flask(__name__)   # create our flask app
-app.secret_key = 'c\xa7\xe8\xc6\xc7.\x0cr\x00\xb4\xf2"\x89FL\xcf\x01\xbe2|P&#\x82'
+app.secret_key = 'FLASK_SECRET'
 
 
 # configure Instagram API
