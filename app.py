@@ -16,6 +16,16 @@ instaConfig = {
 api = InstagramAPI(**instaConfig)
 
 @app.route('/')
+def home():
+	if 'instagram_access_token' in session:
+		return render_template('home.html')
+
+	else:
+
+		return redirect('/connect')
+
+
+@app.route('/ownphotos')
 def user_photos():
 
 	# if instagram info is in session variables, then display user photos
@@ -26,7 +36,7 @@ def user_photos():
 		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : recent_media,
-			 'title' : ""
+			 'title' : "User\'s Photos"
 		}
 
 		return render_template('display.html', **templateData)
