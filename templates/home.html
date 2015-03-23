@@ -20,7 +20,7 @@
                <p>Welcome to my Instagram API test application for CST 205 (Spring 2015).</p>
                <h2>
                {% for m in media %}
-                   {{ m.['username'] }}<br/>
+                   {{ m.data.username }}<br/>
                {% endfor %}
                <a href="/popular">Popular Photos</a><br/>
                <a href="/ownphotos">Your Photos</a><br/>
