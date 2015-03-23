@@ -24,7 +24,7 @@ def home():
 
 		templateData = {
 			'username' : user_info,
-			'profile_picture': user_info
+			'profile_picture': profile_picture
 		}
 
 		return render_template('home.html', **templateData)
