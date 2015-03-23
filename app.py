@@ -22,11 +22,6 @@ def home():
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
 		user_info = userAPI.user(user_id=session['instagram_user'].get('id'))
 
-		templateData = {
-			'username' : request.args.get('username'),
-			'pic' : request.args.get('profile_picture')
-		}
-
 		return render_template('home.html', **templateData)
 
 	else:
