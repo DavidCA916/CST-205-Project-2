@@ -22,7 +22,12 @@ def home():
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
 		user_info = userAPI.user(user_id=session['instagram_user'].get('id'))
 
-		return render_template('home.html')
+		templateData = {
+			'username' : user_info,
+			'profile_picture': pic
+		}
+
+		return render_template('home.html', **templateData)
 
 	else:
 		return redirect('/connect')
