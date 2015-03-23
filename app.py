@@ -11,7 +11,7 @@ app.secret_key = os.environ['FLASK_SECRET']
 instaConfig = {
 	'client_id' : os.environ['ID'],
 	'client_secret' : os.environ['SECRET'],
-	'redirect_uri' : 'https://shielded-brushlands-9106.herokuapp.com/instagram_callback'
+	'redirect_uri' : 'https://cst205project2.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
 num_photos = 12
