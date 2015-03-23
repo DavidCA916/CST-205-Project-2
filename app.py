@@ -23,7 +23,8 @@ def home():
 		user_info = userAPI.user(user_id=session['instagram_user'].get('id'))
 
 		templateData = {
-			'username' : user_info
+			'username' : user_info.get('username'),
+			'pic' : user_info.get('profile_picture')
 		}
 
 		return render_template('home.html', **templateData)
