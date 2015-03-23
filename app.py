@@ -24,7 +24,6 @@ def home():
 
 		templateData = {
 			'usere' : user_info
-			'pic' : 
 		}
 
 		return render_template('home.html', **templateData)
