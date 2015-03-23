@@ -18,7 +18,10 @@ num_photos = 12
 
 @app.route('/')
 def home():
-	if 'instagram_access_token' in session:
+	if 'instagram_access_token' in session and 'instagram_user' in session:
+		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
+		user_info = userAPI.user(user_id=session['instagram_user'])
+
 		return render_template('home.html')
 
 	else:
@@ -36,7 +39,7 @@ def user_photos():
 		templateData = {
 			'size' : request.args.get('size','thumb'),
 			'media' : recent_media,
-			 'title' : "User\'s Photos - "
+			'title' : "User\'s Photos - "
 		}
 
 		return render_template('display.html', **templateData)
