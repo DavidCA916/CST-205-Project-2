@@ -21,12 +21,12 @@
                <div class="well">
                <h2>
                User: {{ media.username }} ({{ media.full_name }})<br/>
-               <img src="{{ media.profile_picture }}" alt="{{ media.username }}">
                </h2>
+               <img src="{{ media.profile_picture }}" alt="{{ media.username }}">
                <h4>
-               Pictures on profile: {{ media.counts.media }}<br/>
-               Follows: {{ media.counts.follows }}<br/>
-               Followed by: {{ media.counts.followed_by }}<br/>
+               Posts: {{ media.counts.media }}<br/>
+               Followers: {{ media.counts.followed_by }}<br/>
+               Following: {{ media.counts.follows }}<br/>
                </h4>
                </div>
                <h2>
