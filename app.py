@@ -26,7 +26,7 @@ def home():
 			'username' : user_info
 		}
 
-		return render_template('home.html')
+		return render_template('home.html', **templateData)
 
 	else:
 		return redirect('/connect')
