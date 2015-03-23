@@ -18,7 +18,7 @@
             <div class="container">
                <h1><strong>Instagram API Test App</strong></h1>
                <p>Welcome to my Instagram API test application for CST 205 (Spring 2015).</p>
-               <div class="jumbotron">
+               <div class="well">
                <h2>
                User: {{ media.username }} ({{ media.full_name }})<br/>
                <img src="{{ media.profile_picture }}" alt="{{ media.username }}">
@@ -31,9 +31,9 @@
                </div>
                <br/>
                <h2>
-               <a href="/popular">Popular Photos</a><br/>
-               <a href="/ownphotos">Your Photos</a><br/>
-               <a href="/feed">Your Feed</a>
+               <a class="btn btn-success" href="/popular">Popular Photos</a><br/>
+               <a class="btn btn-primary" href="/ownphotos">Your Photos</a><br/>
+               <a class="btn btn-danger" href="/feed">Your Feed</a>
                </h2>
             </div>  
         </div>
