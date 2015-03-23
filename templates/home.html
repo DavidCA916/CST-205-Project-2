@@ -18,15 +18,17 @@
             <div class="container">
                <h1><strong>Instagram API Test App</strong></h1>
                <p>Welcome to my Instagram API test application for CST 205 (Spring 2015).</p>
+               <div class="masthead">
                <h2>
                User: {{ media.username }} ({{ media.full_name }})<br/>
-               <img src="{{ media.profile_picture }}" alt="{{ media.username }}"><br/>
+               <img src="{{ media.profile_picture }}" alt="{{ media.username }}">
                </h2>
-               <h3>
+               <h4>
                Pictures on profile: {{ media.counts.media }}<br/>
                Follows: {{ media.counts.follows }}<br/>
                Followed by: {{ media.counts.followed_by }}<br/>
-               </h3>
+               </h4>
+               </div>
                <br/>
                <a href="/popular">Popular Photos</a><br/>
                <a href="/ownphotos">Your Photos</a><br/>
