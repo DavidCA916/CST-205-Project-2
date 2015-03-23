@@ -20,7 +20,7 @@ num_photos = 12
 def home():
 	if 'instagram_access_token' in session and 'instagram_user' in session:
 		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_info, next = userAPI.user(user_id=session['instagram_user'].get('id'))
+		user_info = userAPI.user(user_id=session['instagram_user'].get('id'))
 
 		templateData = {
 			'username' : user_info
