@@ -3,105 +3,99 @@ import time
 from instagram.client import InstagramAPI
 from flask import Flask, request, render_template, session, redirect, abort, flash, jsonify
 
-app = Flask(__name__)   # create our flask app
+app = Flask(__name__)   # Creates the Flask app
 app.secret_key = os.environ['FLASK_SECRET']
 
 
-# configure Instagram API
+# Sets the API keys and callback URL. API keys are stored on the Heroku servers
+# and accessed via the variables ID and SECRET
 instaConfig = {
 	'client_id' : os.environ['ID'],
 	'client_secret' : os.environ['SECRET'],
 	'redirect_uri' : 'https://cst205project2.herokuapp.com/instagram_callback'
 }
 api = InstagramAPI(**instaConfig)
-num_photos = 12
+num_photos = 12 # Sets the number of photos output per page to 12
 
-@app.route('/')
+@app.route('/') # App homepage
 def home():
-	if 'instagram_access_token' in session and 'instagram_user' in session:
-		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_info = userAPI.user(user_id=session['instagram_user'].get('id'))
+	if 'instagram_access_token' in session and 'instagram_user' in session: # Checks if user logged in
+		userAPI = InstagramAPI(access_token=session['instagram_access_token']) # Sets the token to the API
+		user_info = userAPI.user(user_id=session['instagram_user'].get('id')) # Sets the user ID to the API
 
 		templateData = {
-			'media' : user_info
+			'media' : user_info # Loads user's info (username, picture, etc.)
 		}
 
-		return render_template('home.html', **templateData)
+		return render_template('home.html', **templateData) # Renders the home.html page using the templateData
 
-	else:
+	else: # Makes user login, if not logged in
 		return redirect('/connect')
 
 
-@app.route('/ownphotos')
+@app.route('/ownphotos') # Page that display's the user's photos
 def user_photos():
-
-	# if instagram info is in session variables, then display user photos
-	if 'instagram_access_token' in session and 'instagram_user' in session:
-		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		recent_media, next = userAPI.user_recent_media(user_id=session['instagram_user'].get('id'),count=num_photos)
+	if 'instagram_access_token' in session and 'instagram_user' in session: # Checks if user is logged in
+		userAPI = InstagramAPI(access_token=session['instagram_access_token']) # Sets the token to the API
+		recent_media, next = userAPI.user_recent_media(user_id=session['instagram_user'].get('id'),count=num_photos) # Sets the user ID and count of photos (to 12 from variable)
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : recent_media,
-			'title' : "User\'s Photos - "
+			'media' : recent_media, # Loads user's pictures
+			'title' : "User\'s Photos - " # Sets title of HTML page via variable
 		}
 
-		return render_template('display.html', **templateData)
+		return render_template('display.html', **templateData) # Renders the display.html page using templateData
 		
 
-	else:
-
+	else: # Makes user login, if not logged in
 		return redirect('/connect')
 
 
 @app.route('/popular')
 def popular_photos():
-
-	# if instagram info is in session variables, then display popular photos
-	if 'instagram_access_token' in session:
-		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		media_search = api.media_popular(count=num_photos)
+	if 'instagram_access_token' in session: # Checks if user logged in
+		userAPI = InstagramAPI(access_token=session['instagram_access_token']) # Sets the token to the API
+		media_search = api.media_popular(count=num_photos) # Gets popular media in count 12
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : media_search,
-			'title' : "Popular Photos -"
+			'media' : media_search, # Loads popular photos
+			'title' : "Popular Photos -" # Sets title of HTML page via variable
 		}
 
-		return render_template('display.html', **templateData)
+		return render_template('display.html', **templateData) # Renders display.html page using templateData
 		
-	else:
+	else: # Makes user login, if not logged in
 		return redirect('/connect')
 
 
 @app.route('/feed')
 def feed_photos():
-
-	# if instagram info is in session variables, then display popular photos
-	if 'instagram_access_token' in session:
-		userAPI = InstagramAPI(access_token=session['instagram_access_token'])
-		user_feed, next = userAPI.user_media_feed(count=num_photos)
+	if 'instagram_access_token' in session: # Checks if user logged in
+		userAPI = InstagramAPI(access_token=session['instagram_access_token']) # Sets the token to the API
+		user_feed, next = userAPI.user_media_feed(count=num_photos) # Gets user's feed in count 12
 
 		templateData = {
 			'size' : request.args.get('size','thumb'),
-			'media' : user_feed,
-			'title' :  "User\'s Feed -"
+			'media' : user_feed, # Loads user's feed
+			'title' :  "User\'s Feed -" # Sets title of HTML page via variable
 		}
 
-		return render_template('display.html', **templateData)
+		return render_template('display.html', **templateData) # Renders display.html page using templateData
 		
-	else:
+	else: # Makes user login, if not logged in
 		return redirect('/connect')
 
 
-# Redirect users to Instagram for login
+# Redirects users to Instagram to login
 @app.route('/connect')
 def main():
 
 	url = api.get_authorize_url(scope=["likes","comments"])
 	return redirect(url)
 
-# Instagram will redirect users back to this route after successfully logging in
+# Takes you back to the app once you're logged in to Instagram
 @app.route('/instagram_callback')
 def instagram_callback():
 
